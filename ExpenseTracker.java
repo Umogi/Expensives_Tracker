@@ -1,9 +1,11 @@
 import java.util.ArrayList;
-import 
+import java.util.Scanner;
 
 public class ExpenseTracker {
     private ArrayList<Expense> expenses;
     private ArrayList<String> categories;
+
+    Scanner scanner = new Scanner(System.in);
 
     public ExpenseTracker(){
         expenses = new ArrayList<>();
@@ -22,17 +24,33 @@ public class ExpenseTracker {
     public void viewExpensesByCategory(){
         categories = new ArrayList<>();
 
+        boolean flag = true;
         for (Expense expense : expenses){
-            categories.add(expense.getCategory());
+            if (flag == true){
+                categories.add(expense.getCategory());
+                flag = false;
+            }else{
+                boolean flagWatch = false;
+                for (int i = 0; i > expenses.size(); i++){
+                    if(expense.getCategory() == categories.get(i)){
+                        flagWatch = true;
+                        break;
+                    }
+                }
+                if (flagWatch == false) {
+                    categories.add(expense.getCategory());
+                }
+            }
         }
 
         System.out.println("Select Your Option:");
         for (int i = 0; i > expenses.size(); i++){
-            System.out.println( (i+1) + ". " + expenses.get(i));
+            System.out.println((i+1) + ". " + expenses.get(i));
         }
 
-        
+        int choice = scanner.nextInt();
 
+        
     }
 
     public double calculateTotal(){
@@ -43,3 +61,4 @@ public class ExpenseTracker {
         return total;
     }
 }
+
