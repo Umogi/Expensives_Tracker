@@ -34,11 +34,18 @@ public class Main {
                 choice = scanner.nextInt();
 
                 if (choice == 1) {
-                    
+                    tracker.viewExpenses();
                 }else if (choice == 2) {
-                    
+                    tracker.viewExpensesByCategory();
                 }else if (choice == 3){
-
+                    System.out.println("Pick Start and End Date:");
+                    scanner.nextLine(); // Consume newline
+                    System.out.println("Start: ");
+                    String start = scanner.nextLine();
+                    System.out.println("End: ");
+                    String end = scanner.nextLine();
+                    
+                    tracker.viewExpensesByDate(start, end);
                 }else{
                     System.out.println("This option ddoes not exist");
                 }
